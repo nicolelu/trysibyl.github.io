@@ -1,0 +1,329 @@
+:root {
+    --wave-scroll-speed: 15s;      /* Time to scroll across screen (lower = faster) */
+    --wave-amplitude: 30px;        /* Height of the wave */
+    --wave-frequency: 2s;          /* Time for one up-down cycle */
+    --max-letter-rotation: 15deg;  /* Maximum rotation of letters */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.fixed-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Style for the video background */
+.video-background {
+    transform: rotate(90deg) scale(2);  /* Rotate video and scale to cover */
+    transform-origin: center;
+    object-fit: cover;
+    z-index: 1;  /* Place video above the image */
+    min-width: 100%;
+    min-height: 100%;
+}
+
+/* Add a subtle overlay to improve text readability if needed */
+.background-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);  /* Subtle dark overlay */
+    z-index: 2;
+}
+
+.content-container {
+    position: relative;
+    z-index: 1;
+}
+
+.chrome-text {
+    background: linear-gradient(
+        45deg,
+        #ff00ff,
+        #00ffff,
+        #ff00ff,
+        #00ffff
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: chrome-animation 8s linear infinite;
+    background-size: 400% 400%;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.subtitle {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes chrome-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.chrome-button {
+    background: linear-gradient(
+        45deg,
+        #ff00ff,
+        #00ffff,
+        #ff00ff,
+        #00ffff
+    );
+    background-size: 400% 400%;
+    animation: chrome-animation 8s linear infinite;
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.chrome-button:hover {
+    transform: scale(1.05);
+}
+
+/* Ensure the typing container preserves whitespace */
+#typed-text {
+    white-space: pre;
+    font-family: monospace;
+    line-height: 1.2;
+}
+
+/* Fix the height to prevent jumping */
+#title {
+    min-height: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+}
+
+.logo-container {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+    transition: filter 0.3s ease;
+}
+
+.logo-container:hover {
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.7));
+}
+
+.logo-container img {
+    /* Add a subtle white tint to the SVG */
+    /* filter: brightness(0) invert(0.85); */
+}
+
+/* Add these to your existing styles */
+.success-button {
+    background: linear-gradient(45deg, #4ade80, #22c55e);
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: default;
+}
+
+.error-state {
+    background: linear-gradient(45deg, #ef4444, #dc2626);
+    color: white;
+}
+
+/* Modify the form button to maintain consistent height */
+form button {
+    min-height: 2.5rem;  /* Adjust this value based on your design */
+    white-space: normal;  /* Allow text to wrap */
+    line-height: 1.2;
+}
+
+/* Add these to your existing styles */
+.usecase-card {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.usecase-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                0 0 15px rgba(255, 0, 255, 0.3),
+                0 0 25px rgba(0, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+    animation: card-glow 3s linear infinite;
+}
+
+@keyframes card-glow {
+    0% {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2),
+                   0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                   0 0 15px rgba(255, 0, 255, 0.3),
+                   0 0 25px rgba(0, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2),
+                   0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                   0 0 15px rgba(0, 255, 255, 0.3),
+                   0 0 25px rgba(255, 0, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2),
+                   0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                   0 0 15px rgba(255, 0, 255, 0.3),
+                   0 0 25px rgba(0, 255, 255, 0.2);
+    }
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Update the card image styles */
+.card-image {
+    width: 100%;
+    height: 200px;  /* Fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem 0.5rem 0 0;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* This ensures the image isn't cropped */
+    padding: 1rem;  /* Add some padding around the image */
+}
+
+/* Add these styles for the wave text animation */
+.wave-text-container {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.wave-text {
+    font-size: 5rem;
+    font-weight: bold;
+    white-space: nowrap;
+    color: transparent;
+    position: absolute;
+    animation: moveText var(--wave-scroll-speed) linear infinite;
+    right: -100%;  /* Start from right side */
+}
+
+.wave-text span {
+    display: inline-block;
+    background: linear-gradient(
+        45deg,
+        #ff00ff,
+        #00ffff,
+        #ff00ff,
+        #00ffff
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 400% 400%;
+    transform-origin: center;
+    animation: 
+        waveFloat var(--wave-frequency) ease-in-out infinite,
+        letterRotate var(--wave-frequency) ease-in-out infinite,
+        chrome-animation 8s linear infinite;
+}
+
+@keyframes moveText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-200vw);  /* Move left by 2x viewport width */
+    }
+}
+
+@keyframes waveFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(calc(var(--wave-amplitude) * -1)) rotate(calc(var(--max-letter-rotation) * -1));
+    }
+    75% {
+        transform: translateY(var(--wave-amplitude)) rotate(var(--max-letter-rotation));
+    }
+}
+
+@keyframes letterRotate {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(calc(var(--max-letter-rotation) * -1));
+    }
+    75% {
+        transform: rotate(var(--max-letter-rotation));
+    }
+}
+
+/* Update the delay calculations for smoother wave */
+.wave-text span:nth-child(1) { animation-delay: calc(var(--wave-frequency) * 0.0); }
+.wave-text span:nth-child(2) { animation-delay: calc(var(--wave-frequency) * 0.05); }
+.wave-text span:nth-child(3) { animation-delay: calc(var(--wave-frequency) * 0.1); }
+.wave-text span:nth-child(4) { animation-delay: calc(var(--wave-frequency) * 0.15); }
+.wave-text span:nth-child(5) { animation-delay: calc(var(--wave-frequency) * 0.2); }
+.wave-text span:nth-child(6) { animation-delay: calc(var(--wave-frequency) * 0.25); }
+.wave-text span:nth-child(7) { animation-delay: calc(var(--wave-frequency) * 0.3); }
+.wave-text span:nth-child(8) { animation-delay: calc(var(--wave-frequency) * 0.35); }
+.wave-text span:nth-child(9) { animation-delay: calc(var(--wave-frequency) * 0.4); }
+.wave-text span:nth-child(10) { animation-delay: calc(var(--wave-frequency) * 0.45); }
+.wave-text span:nth-child(11) { animation-delay: calc(var(--wave-frequency) * 0.5); }
+.wave-text span:nth-child(12) { animation-delay: calc(var(--wave-frequency) * 0.55); }
+.wave-text span:nth-child(13) { animation-delay: calc(var(--wave-frequency) * 0.6); }
+.wave-text span:nth-child(14) { animation-delay: calc(var(--wave-frequency) * 0.65); }
+.wave-text span:nth-child(15) { animation-delay: calc(var(--wave-frequency) * 0.7); }
+.wave-text span:nth-child(16) { animation-delay: calc(var(--wave-frequency) * 0.75); }
+.wave-text span:nth-child(17) { animation-delay: calc(var(--wave-frequency) * 0.8); }
+.wave-text span:nth-child(18) { animation-delay: calc(var(--wave-frequency) * 0.85); }
+.wave-text span:nth-child(19) { animation-delay: calc(var(--wave-frequency) * 0.9); }
+.wave-text span:nth-child(20) { animation-delay: calc(var(--wave-frequency) * 0.95); }
+
+/* Add chrome animation to the text */
+.wave-text span {
+    animation: waveFloat 2s ease-in-out infinite,
+              chrome-animation 8s linear infinite;
+} 
